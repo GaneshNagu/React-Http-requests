@@ -6,14 +6,25 @@ import NewPost from '../../components/NewPost/NewPost';
 import classes from './Blog.css';
 import axios from 'axios';
 
+
 class Blog extends Component {
     state = {
         posts: []
     }
     componentDidMount() {
         axios.get('https://jsonplaceholder.typicode.com/photos').then(response => {
-            this.setState({ posts: response.data })
-            console.log(response);
+
+            const slicedData = response.data.slice(0, 20);
+
+            const newupdatedata = slicedData.map(temprout => {
+                return {
+                    ...temprout,
+                    author: 'Nagu'
+                }
+            });
+
+            this.setState({ posts: newupdatedata })
+            // console.log(response);
         })
     }
 
@@ -23,7 +34,7 @@ class Blog extends Component {
 
         const postsrnder = this.state.posts.map(repvalue => {
             return (
-                <Post title={repvalue.title} url={repvalue.url} key={repvalue.id} />
+                <Post title={repvalue.title} url={repvalue.url} key={repvalue.id} author={repvalue.author} />
             )
         })
 
