@@ -1,0 +1,15 @@
+import React from 'react';
+
+import classes from './Post.css';
+
+const post = (props) => (
+    <article className={classes.Post}>
+        <h1>{props.title}</h1>
+        <div><img src={props.url} alt="not found" /></div>
+        <div className={classes.Info}>
+            <div className={classes.Author}>Author</div>
+        </div>
+    </article>
+);
+
+export default post;
