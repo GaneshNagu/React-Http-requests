@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 
-import Post from '../../components/Post/Post';
-import FullPost from '../../components/FullPost/FullPost';
-import NewPost from '../../components/NewPost/NewPost';
-import classes from './Blog.css';
-import axios from 'axios';
+import Post from "../../components/Post/Post";
+import FullPost from "../../components/FullPost/FullPost";
+import NewPost from "../../components/NewPost/NewPost";
+import classes from "./Blog.css";
+import axios from "axios";
 
 class Blog extends Component {
   state = {
@@ -13,25 +13,23 @@ class Blog extends Component {
     postSelectedId: null,
   };
   componentDidMount() {
-    axios
-      .get('https://jsonplaceholder.typicode.com/photos')
-      .then((response) => {
-        const slicedData = response.data.slice(0, 4);
+    axios.get("https://jsonplaceholder.cypress.io/posts").then((response) => {
+      const slicedData = response.data.slice(0, 4);
 
-        const newupdatedata = slicedData.map((temprout) => {
-          return {
-            ...temprout,
-            author: 'Nagu',
-          };
-        });
-
-        this.setState({posts: newupdatedata});
-        console.log(this.state.posts);
+      const newupdatedata = slicedData.map((temprout) => {
+        return {
+          ...temprout,
+          author: "Nagu",
+        };
       });
+
+      this.setState({ posts: newupdatedata });
+      console.log(this.state.posts);
+    });
   }
 
   ClickedHandler = (keyval) => {
-    this.setState({postSelectedId: keyval});
+    this.setState({ postSelectedId: keyval });
 
     // const newtempposts = {
     //   ...this.state.posts,
