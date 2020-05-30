@@ -26,19 +26,19 @@ class Blog extends Component {
         });
 
         this.setState({posts: newupdatedata});
-        // console.log(this.state.posts);
+        console.log(this.state.posts);
       });
   }
 
   ClickedHandler = (keyval) => {
     this.setState({postSelectedId: keyval});
 
-    const newtempposts = {
-      ...this.state.posts,
-    };
-    const newupdatedvalue = newtempposts[keyval - 1];
+    // const newtempposts = {
+    //   ...this.state.posts,
+    // };
+    // const newupdatedvalue = newtempposts[keyval - 1];
 
-    this.setState({newposts: newupdatedvalue, postSelectedId: keyval});
+    // this.setState({newposts: newupdatedvalue, postSelectedId: keyval});
   };
 
   render() {
@@ -53,17 +53,17 @@ class Blog extends Component {
       );
     });
 
-    console.log(this.state.newposts);
-    console.log(this.state.postSelectedId);
+    // console.log(this.state.newposts);
+    // console.log(this.state.postSelectedId);
 
     return (
       <div>
         <section className={classes.Posts}>{postsrnder}</section>
         <section>
           <FullPost
-            title={this.state.newposts.title}
+            // title={this.state.newposts.title}
             id={this.state.postSelectedId}
-            author={this.state.newposts.author}
+            // author={this.state.newposts.author}
           />
         </section>
         <section>
