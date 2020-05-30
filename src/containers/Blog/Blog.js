@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import Post from '../../components/Post/Post';
 import FullPost from '../../components/FullPost/FullPost';
@@ -6,52 +6,72 @@ import NewPost from '../../components/NewPost/NewPost';
 import classes from './Blog.css';
 import axios from 'axios';
 
-
 class Blog extends Component {
-    state = {
-        posts: []
-    }
-    componentDidMount() {
-        axios.get('https://jsonplaceholder.typicode.com/photos').then(response => {
+  state = {
+    posts: [],
+    newposts: [],
+    postSelectedId: null,
+  };
+  componentDidMount() {
+    axios
+      .get('https://jsonplaceholder.typicode.com/photos')
+      .then((response) => {
+        const slicedData = response.data.slice(0, 4);
 
-            const slicedData = response.data.slice(0, 20);
+        const newupdatedata = slicedData.map((temprout) => {
+          return {
+            ...temprout,
+            author: 'Nagu',
+          };
+        });
 
-            const newupdatedata = slicedData.map(temprout => {
-                return {
-                    ...temprout,
-                    author: 'Nagu'
-                }
-            });
+        this.setState({posts: newupdatedata});
+        // console.log(this.state.posts);
+      });
+  }
 
-            this.setState({ posts: newupdatedata })
-            // console.log(response);
-        })
-    }
+  ClickedHandler = (keyval) => {
+    this.setState({postSelectedId: keyval});
 
+    const newtempposts = {
+      ...this.state.posts,
+    };
+    const newupdatedvalue = newtempposts[keyval - 1];
 
+    this.setState({newposts: newupdatedvalue, postSelectedId: keyval});
+  };
 
-    render() {
+  render() {
+    const postsrnder = this.state.posts.map((repvalue) => {
+      return (
+        <Post
+          title={repvalue.title}
+          key={repvalue.id}
+          author={repvalue.author}
+          clicked={() => this.ClickedHandler(repvalue.id)}
+        />
+      );
+    });
 
-        const postsrnder = this.state.posts.map(repvalue => {
-            return (
-                <Post title={repvalue.title} url={repvalue.url} key={repvalue.id} author={repvalue.author} />
-            )
-        })
+    console.log(this.state.newposts);
+    console.log(this.state.postSelectedId);
 
-        return (
-            <div>
-                <section className={classes.Posts}>
-                    {postsrnder}
-                </section>
-                <section>
-                    <FullPost />
-                </section>
-                <section>
-                    <NewPost />
-                </section>
-            </div>
-        );
-    }
+    return (
+      <div>
+        <section className={classes.Posts}>{postsrnder}</section>
+        <section>
+          <FullPost
+            title={this.state.newposts.title}
+            id={this.state.postSelectedId}
+            author={this.state.newposts.author}
+          />
+        </section>
+        <section>
+          <NewPost />
+        </section>
+      </div>
+    );
+  }
 }
 
 export default Blog;
