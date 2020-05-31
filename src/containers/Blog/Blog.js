@@ -11,7 +11,10 @@ class Blog extends Component {
     posts: [],
     newposts: [],
     postSelectedId: null,
+
     errorpostval:false
+
+
   };
   componentDidMount() {
     axios.get("https://jsonplaceholder.cypress.io/posts").then((response) => {
@@ -26,18 +29,20 @@ class Blog extends Component {
 
       this.setState({ posts: newupdatedata });
       console.log(this.state.posts);
+
     }).catch(error=>{
        this.setState({errorpostval:true})
+
     });
   }
 
   ClickedHandler = (keyval) => {
     this.setState({ postSelectedId: keyval });
+
    
   };
 
   render() {
-
     let postsrnder=<p style={{textAlign:"center"}}>Something went Wrong...!</p>
     
     if (!this.errorpostval){
@@ -54,6 +59,7 @@ class Blog extends Component {
 
     }
     
+
 
     // console.log(this.state.newposts);
     // console.log(this.state.postSelectedId);
