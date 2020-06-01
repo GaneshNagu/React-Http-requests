@@ -15,7 +15,7 @@ class FullPost extends Component {
         (this.state.loadeddata && this.state.loadeddata.id !== this.props.id)
       ) {
         axios
-          .get("https://jsonplaceholder.typicode.com/posts/" + this.props.id)
+          .get("https://jsonplaceholder.cypress.io/posts/" + this.props.id)
           .then((response) => {
             this.setState({ loadeddata: response.data });
             console.log(this.state.loadeddata);

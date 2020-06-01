@@ -6,6 +6,8 @@ import NewPost from "../../components/NewPost/NewPost";
 import classes from "./Blog.css";
 import axios from "axios";
 
+
+
 class Blog extends Component {
   state = {
     posts: [],
@@ -16,6 +18,10 @@ class Blog extends Component {
 
 
   };
+
+  
+
+
   componentDidMount() {
     axios.get("https://jsonplaceholder.cypress.io/posts").then((response) => {
       const slicedData = response.data.slice(0, 4);
@@ -34,6 +40,12 @@ class Blog extends Component {
        this.setState({errorpostval:true})
 
     });
+
+
+
+    
+
+
   }
 
   ClickedHandler = (keyval) => {
