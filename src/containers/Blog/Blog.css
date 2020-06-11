@@ -1,8 +1,27 @@
-.Posts {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    width: 80%;
-    margin: auto;
-   
+
+
+.Navigion{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+
+nav li{
+    display: inline-block;
+    margin: 10px;
+}
+
+li a{
+    text-decoration: none;
+    border:1px solid black;
+    padding: 5px 10px;
+    
+}
+
+
+li a:hover,
+li a:active{
+    color:#0e4530;
+    background-color: #cfd4c7;
 }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Loader from 'react-loader-spinner';
 
 import classes from "./FullPost.css";
 import axios from "axios";
@@ -28,7 +29,7 @@ class FullPost extends Component {
     let post = <p style={{ textAlign: "center" }}>Please select a Post!</p>;
 
     if (this.props.id) {
-      post = <p style={{ textAlign: "center" }}>Loading ..... </p>;
+      post = <Loader type="BallTriangle" style={{ textAlign: "center" }} color="#2b24b5" height={80} width={80} />;
     }
 
     if (this.state.loadeddata) {
