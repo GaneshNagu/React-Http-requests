@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import Posts from '../Posts/Posts';
 
-import Post from "../../components/Post/Post";
-import FullPost from "../../components/FullPost/FullPost";
-import NewPost from "../../components/NewPost/NewPost";
+ 
+// import FullPost from "../FullPost/FullPost";
+// import NewPost from "../NewPost/NewPost";
 import classes from "./Blog.css";
-import axios from "axios";
 
+<<<<<<< HEAD
 class Blog extends Component {
   state = {
     posts: [],
@@ -76,16 +77,46 @@ class Blog extends Component {
           </nav>
         </header>
         <section className={classes.Posts}>{postsrnder}</section>
+=======
+
+
+
+class Blog extends Component {
+  
+  render() {
+   
+    
+    return (
+      <div>
+      <header className={classes.Navigion}>
+        <nav>
+          <ul>
+            <li>
+              <a href='/'>Home</a>
+            </li>
+            <li>
+              <a href='/new-post'>New Post</a>
+            </li>
+          </ul>
+          
+        </nav>
+      </header>
+        
+>>>>>>> bd100527727c03546aabe431b6ee1deb5160311f
         <section>
+          <Posts/>
+        </section>
+
+        {/* <section>
           <FullPost
             // title={this.state.newposts.title}
-            id={this.state.postSelectedId}
+            id={this.state.postSelectedId}  
             // author={this.state.newposts.author}
           />
         </section>
         <section>
           <NewPost />
-        </section>
+        </section> */}
       </div>
     );
   }
