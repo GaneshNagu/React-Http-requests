@@ -6,59 +6,47 @@ import NewPost from "../../components/NewPost/NewPost";
 import classes from "./Blog.css";
 import axios from "axios";
 
-
-
 class Blog extends Component {
   state = {
     posts: [],
     newposts: [],
     postSelectedId: null,
 
-    errorpostval:false
-
-
+    errorpostval: false,
   };
 
-  
-
-
   componentDidMount() {
-    axios.get("https://jsonplaceholder.cypress.io/posts").then((response) => {
-      const slicedData = response.data.slice(0, 4);
+    axios
+      .get("https://jsonplaceholder.cypress.io/posts")
+      .then((response) => {
+        const slicedData = response.data.slice(0, 4);
 
-      const newupdatedata = slicedData.map((temprout) => {
-        return {
-          ...temprout,
-          author: "Nagu",
-        };
+        const newupdatedata = slicedData.map((temprout) => {
+          return {
+            ...temprout,
+            author: "Nagu",
+          };
+        });
+
+        this.setState({ posts: newupdatedata });
+        console.log(this.state.posts);
+      })
+      .catch((error) => {
+        this.setState({ errorpostval: true });
       });
-
-      this.setState({ posts: newupdatedata });
-      console.log(this.state.posts);
-
-    }).catch(error=>{
-       this.setState({errorpostval:true})
-
-    });
-
-
-
-    
-
-
   }
 
   ClickedHandler = (keyval) => {
     this.setState({ postSelectedId: keyval });
-
-   
   };
 
   render() {
-    let postsrnder=<p style={{textAlign:"center"}}>Something went Wrong...!</p>
-    
-    if (!this.errorpostval){
-       postsrnder = this.state.posts.map((repvalue) => {
+    let postsrnder = (
+      <p style={{ textAlign: "center" }}>Something went Wrong...!</p>
+    );
+
+    if (!this.errorpostval) {
+      postsrnder = this.state.posts.map((repvalue) => {
         return (
           <Post
             title={repvalue.title}
@@ -68,16 +56,25 @@ class Blog extends Component {
           />
         );
       });
-
     }
-    
-
 
     // console.log(this.state.newposts);
     // console.log(this.state.postSelectedId);
 
     return (
-      <div>
+      <div className={classes.Blog}>
+        <header>
+          <nav>
+            <ul>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/new-post">NewPost</a>
+              </li>
+            </ul>
+          </nav>
+        </header>
         <section className={classes.Posts}>{postsrnder}</section>
         <section>
           <FullPost

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import classes from "./FullPost.css";
 import axios from "axios";
+import Loader from "react-loader-spinner";
 
 class FullPost extends Component {
   state = {
@@ -28,7 +29,16 @@ class FullPost extends Component {
     let post = <p style={{ textAlign: "center" }}>Please select a Post!</p>;
 
     if (this.props.id) {
-      post = <p style={{ textAlign: "center" }}>Loading ..... </p>;
+      post = (
+        <Loader
+          type="Rings"
+          color="#00BFFF"
+          height={100}
+          width={100}
+          timeout={3000} //3 secs
+          style={{ textAlign: "center" }}
+        />
+      );
     }
 
     if (this.state.loadeddata) {
