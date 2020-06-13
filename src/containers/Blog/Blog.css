@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 .Posts {
   display: flex;
   flex-flow: row wrap;
@@ -19,16 +18,16 @@
   margin: 20px;
 }
 
-.Blog a {
+.Blog Link {
   text-decoration: none;
   color: black;
 }
 
-.Blog a:hover,
-.Blog a:active {
+.Blog Link:hover,
+.Blog Link:active {
   color: orange;
 }
-=======
+
 
 
 .Navigion{
@@ -43,7 +42,7 @@ nav li{
     margin: 10px;
 }
 
-li a{
+li Link{
     text-decoration: none;
     border:1px solid black;
     padding: 5px 10px;
@@ -51,9 +50,9 @@ li a{
 }
 
 
-li a:hover,
-li a:active{
+li Link:hover,
+li Link:active{
     color:#0e4530;
     background-color: #cfd4c7;
 }
->>>>>>> bd100527727c03546aabe431b6ee1deb5160311f
+

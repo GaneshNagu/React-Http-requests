@@ -37,11 +37,8 @@
     "react-dev-utils": "^5.0.2",
     "react-dom": "^16.13.1",
     "react-loader-spinner": "^3.1.14",
-<<<<<<< HEAD
-=======
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
->>>>>>> bd100527727c03546aabe431b6ee1deb5160311f
     "resolve": "1.6.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",

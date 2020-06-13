@@ -5,72 +5,71 @@ import classes from './Posts.css';
 
 
 class Posts extends Component {
-    state = {
-        posts: [],
-        newposts: [],
-        postSelectedId: null,
-         errorpostval:false
-     
-      };
+  state = {
+    posts: [],
+    newposts: [],
+    postSelectedId: null,
+    errorpostval: false
 
-      ClickedHandler = (keyval) => {
-        this.setState({ postSelectedId: keyval });
-          
-      };
-    
+  };
+  ClickedHandler = (keyval) => {
+    this.setState({ postSelectedId: keyval });
 
-    componentDidMount() {
-        axios.get("https://jsonplaceholder.cypress.io/posts").then((response) => {
-          const slicedData = response.data.slice(0, 4);
-    
-          const newupdatedata = slicedData.map((temprout) => {
-            return {
-              ...temprout,
-              author: "Nagu",
-            };
-          });
-    
-          this.setState({ posts: newupdatedata });
-          console.log(this.state.posts);
-    
-        }).catch(error=>{
-           this.setState({errorpostval:true})
-    
-        });    
-    
-      }
+  };
 
-    render() {
+  componentDidMount() {
+    // console.log(this.props)
+    axios.get("https://jsonplaceholder.cypress.io/posts").then((response) => {
+      const slicedData = response.data.slice(0, 4);
 
-        let postsrnder = <p style = {{ textAlign: "center" }} > Something went Wrong...! </p>
+      const newupdatedata = slicedData.map((temprout) => {
+        return {
+          ...temprout,
+          author: "Nagu",
+        };
+      });
 
-        if (!this.errorpostval) {
-            postsrnder = this.state.posts.map((repvalue) => {
-                return ( <
-                    Post title = { repvalue.title }
-                    key = { repvalue.id }
-                    author = { repvalue.author }
-                    clicked = {
-                        () => this.ClickedHandler(repvalue.id)
-                    }
-                    />
-                );
-            });
+      this.setState({ posts: newupdatedata });
+      console.log(this.state.posts);
 
-        }
+    }).catch(error => {
+      this.setState({ errorpostval: true })
 
+    });
 
-        return (
-            // <div>
-            <section className = {classes.Posts} >{ postsrnder } </section>
-            // </div>
+  }
 
+  render() {
 
-        )
+    let postsrnder = <p style={{ textAlign: "center" }} > Something went Wrong...! </p>
 
-
+    if (!this.errorpostval) {
+      postsrnder = this.state.posts.map((repvalue) => {
+        return (<
+          Post title={repvalue.title}
+          key={repvalue.id}
+          author={repvalue.author}
+          clicked={
+            () => this.ClickedHandler(repvalue.id)
+          }
+        />
+        );
+      });
 
     }
+
+
+    return (
+      // <div>
+      <section className={classes.Posts} >{postsrnder} </section>
+      // </div>
+
+
+    )
+
+
+
+  }
 }
 
 export default Posts;
