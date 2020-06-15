@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import Post from "../../components/Post/Post";
 import classes from './Posts.css';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 class Posts extends Component {
   state = {
@@ -13,7 +13,10 @@ class Posts extends Component {
 
   };
   ClickedHandler = (keyval) => {
-    this.setState({ postSelectedId: keyval });
+    // this.setState({ postSelectedId: keyval });
+    // this.props.history.push({pathname:keyval})
+    this.props.history.push({pathname:keyval})
+    this.props.history.push('/'+keyval);
 
   };
 
@@ -46,14 +49,15 @@ class Posts extends Component {
     if (!this.errorpostval) {
       postsrnder = this.state.posts.map((repvalue) => {
         return (
-          <Link to={'/'+repvalue.id} key={repvalue.id}>
+          // <Link to={'/'+repvalue.id} key={repvalue.id}>
           <Post title={repvalue.title}
           author={repvalue.author}
+          key={repvalue.id}
           clicked={
             () => this.ClickedHandler(repvalue.id)
           }
         />
-        </Link>
+        // </Link>
         );
       });
 
