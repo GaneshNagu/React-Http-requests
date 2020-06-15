@@ -9,17 +9,20 @@ class FullPost extends Component {
     loadeddata: null,
   };
 
-  componentDidUpdate() {
-    if (this.props.id) {
+  componentDidMount() {
+    console.log(this.props);
+    if (this.props.match.params.id) {
       if (
         !this.state.loadeddata ||
-        (this.state.loadeddata && this.state.loadeddata.id !== this.props.id)
+        (this.state.loadeddata && this.state.loadeddata.id !== this.props.match.params.id)
       ) {
         axios
-          .get("https://jsonplaceholder.cypress.io/posts/" + this.props.id)
+          .get("https://jsonplaceholder.cypress.io/posts/" + this.props.match.params.id)
           .then((response) => {
             this.setState({ loadeddata: response.data });
             console.log(this.state.loadeddata);
+          }).catch(error=>{
+            console.log(error);
           });
       }
     }
@@ -28,7 +31,7 @@ class FullPost extends Component {
   render() {
     let post = <p style={{ textAlign: "center" }}>Please select a Post!</p>;
 
-    if (this.props.id) {
+    if (this.props.match.params.id) {
 
       post = (
         <Loader

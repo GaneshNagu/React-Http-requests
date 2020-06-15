@@ -18,13 +18,14 @@
   margin: 20px;
 }
 
-.Blog Link {
+.Blog a {
   text-decoration: none;
   color: black;
 }
 
-.Blog Link:hover,
-.Blog Link:active {
+.Blog a:hover,
+.Blog a:active,
+.Blog a.active{
   color: orange;
 }
 

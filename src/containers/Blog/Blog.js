@@ -3,45 +3,42 @@ import Posts from '../Posts/Posts';
 import { withRouter } from 'react-router-dom';
 
 
-// import FullPost from "../FullPost/FullPost";
+import FullPost from "../FullPost/FullPost";
 import NewPost from "../NewPost/NewPost";
 import classes from "./Blog.css";
-import { Route, Link } from 'react-router-dom';
+import { Route, NavLink,Switch } from 'react-router-dom';
+// import post from "../../components/Post/Post";
 
 class Blog extends Component {
   state = {
   }
 
-  componentDidMount() {
-    console.log(this.props)
-  }
-
-
-
+ 
   render() {
     return (
-      <div>
+      <div className={classes.Blog}>
         <header className={classes.Navigion}>
           <nav>
             <ul>
               <li>
-                <Link to="/">Home</Link>
+                <NavLink exact to="/" activeStyle={{color:'#fa923f', textDecoration:'underline'}}>Home</NavLink>
               </li>
               <li>
-                <Link to={{
+                <NavLink exact to={{
                   pathname: this.props.match.url + 'new-post'
-                }}> New Post </Link>
+                }}> New Post </NavLink>
               </li>
             </ul>
 
           </nav>
         </header>
-
+       
         <Route path='/' exact component={Posts} />
         {/* <Route path='/' exact component={FullPost} /> */}
-
+        <Switch> 
         <Route path='/new-post' component={NewPost} />
-
+        <Route path='/:id' component={FullPost} />
+        </Switch>
 
 
         {/* <section>
