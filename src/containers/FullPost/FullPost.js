@@ -10,41 +10,38 @@ class FullPost extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
-    if (this.props.match.params.id) {
-      if (
-        !this.state.loadeddata ||
-        (this.state.loadeddata && this.state.loadeddata.id !== this.props.match.params.id)
-      ) {
-        axios
-          .get("https://jsonplaceholder.cypress.io/posts/" + this.props.match.params.id)
-          .then((response) => {
-            this.setState({ loadeddata: response.data });
-            console.log(this.state.loadeddata);
-          }).catch(error=>{
-            console.log(error);
-          });
+     console.log("from full postjs",this.props);
+    this.LoadData();
+  }
+
+    componentDidUpdate(){
+      this.LoadData();
+    }
+
+    LoadData(){
+      if (this.props.match.params.id) {
+        if (
+          !this.state.loadeddata ||
+          (this.state.loadeddata && this.state.loadeddata.id !== +this.props.match.params.id)
+        ) {
+          axios
+            .get("https://jsonplaceholder.cypress.io/posts/" + this.props.match.params.id)
+            .then((response) => {
+              this.setState({ loadeddata: response.data });
+              console.log(this.state.loadeddata);
+            }).catch(error=>{
+              console.log(error);
+            });
+        }
       }
     }
-  }
 
   render() {
     let post = <p style={{ textAlign: "center" }}>Please select a Post!</p>;
 
     if (this.props.match.params.id) {
 
-      post = (
-        <Loader
-          type="Rings"
-          color="#00BFFF"
-          height={100}
-          width={100}
-          timeout={3000} //3 secs
-          style={{ textAlign: "center" }}
-        />
-      );
-
-      post = <Loader type="BallTriangle" style={{ textAlign: "center" }} color="#2b24b5" height={80} width={80} />;
+           post = <Loader type="BallTriangle" style={{ textAlign: "center" }} color="#2b24b5" height={80} width={80} />;
 
     }
 

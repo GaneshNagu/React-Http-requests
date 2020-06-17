@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import axios from "axios";
 import Post from "../../components/Post/Post";
 import classes from './Posts.css';
-// import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import FullPost from '../FullPost/FullPost';
 
 class Posts extends Component {
   state = {
@@ -13,15 +14,17 @@ class Posts extends Component {
 
   };
   ClickedHandler = (keyval) => {
+    console.log(keyval,'/posts/'+keyval)
     // this.setState({ postSelectedId: keyval });
     // this.props.history.push({pathname:keyval})
-    this.props.history.push({pathname:keyval})
-    this.props.history.push('/'+keyval);
+    // this.props.history.push({pathname:keyval})
+    this.props.history.push('/posts/'+keyval);
+    // console.log(this.props.history.push('/posts/'+keyval));
 
   };
 
   componentDidMount() {
-    // console.log(this.props)
+     console.log(this.props)
     axios.get("https://jsonplaceholder.cypress.io/posts").then((response) => {
       const slicedData = response.data.slice(0, 4);
 
@@ -65,9 +68,11 @@ class Posts extends Component {
 
 
     return (
-      // <div>
+       <div>
       <section className={classes.Posts} >{postsrnder} </section>
-      // </div>
+      <Route path={this.props.match.url+"/:id"} component={FullPost} />
+      </div>
+
 
 
     )

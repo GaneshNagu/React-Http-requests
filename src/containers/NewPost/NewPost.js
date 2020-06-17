@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { Redirect }from "react-router-dom";
 import classes from "./NewPost.css";
 import axios from "axios";
 
@@ -8,6 +8,7 @@ class NewPost extends Component {
     title: "",
     content: "",
     author: "Max",
+    postSubmitted:false
   };
 
   postDataHandler = () => {
@@ -21,12 +22,21 @@ class NewPost extends Component {
       .post("https://jsonplaceholder.cypress.io/posts", Datasent)
       .then((Response) => {
         console.log(Response);
+        this.setState({postSubmitted:true});
       });
   };
 
   render() {
+
+      let renderredirect=null;
+      if(this.state.postSubmitted){
+        renderredirect=<Redirect to='/posts'/>
+      }
+
     return (
+
       <div className={classes.NewPost}>
+      {renderredirect}
         <h1>Add a Post</h1>
         <label>Title</label>
         <input
